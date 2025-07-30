@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio - Gabriel Kalliu</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script src="https://kit.fontawesome.com/6fa123eb69.js" crossorigin="anonymous"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      box-sizing: border-box;
+    }
+
+    /* Variáveis CSS */
+    :root {
+      --primary-color: #00c896;
+      --secondary-color: #2a2a2a;
+      --background-dark: #121212;
+      --text-color: #e0e0e0;
+    }
+
+    /* Estilos do corpo e fundo animado */
+    body {
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      background: var(--background-dark);
+      color: var(--text-color);
+      /* Para que o fundo fixo funcione corretamente e não haja barras de rolagem indesejadas */
+      overflow-x: hidden;
+      position: relative; /* Necessário para posicionar o fundo fixo em relação ao body */
+    }
+
+    /* Fundo de estrelas animado */
+    .estrelas-fundo {
+      position: fixed; /* Fixa o fundo na viewport */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Coloca o fundo atrás de todo o conteúdo */
+      background-image: url('img/fundo.jpg'); /* Verifique se o caminho está correto */
+      background-repeat: repeat; /* Repete a imagem para criar um efeito contínuo */
+      background-size: auto 200%; /* Altura maior para simular movimento vertical */
+      animation: moverEstrelas 60s linear infinite; /* 60s de duração, linear, infinito */
+    }
+
+    @keyframes moverEstrelas {
+      from {
+        background-position: 0% 0%; /* Começa no topo */
+      }
+      to {
+        background-position: 0% 100%; /* Move para baixo (simulando avanço) */
+      }
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background: #1b1b1b;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+      z-index: 100; /* Garante que a sidebar fique acima de outros elementos */
+    }
+
+    .sidebar .img-logo { /* Seletor corrigido para a imagem da logo */
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px; /* Adiciona um espaço abaixo da logo */
+    }
+
+    .sidebar h1 {
+      color: var(--primary-color);
+      margin-bottom: 40px;
+      font-size: 22px;
+    }
+
+    .sidebar nav ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    .sidebar nav ul li {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .sidebar nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .sidebar nav ul li a:hover {
+      background: var(--primary-color);
+      color: #121212;
+    }
+
+    /* Conteúdo principal */
+    main {
+      margin-left: 220px; /* Margem para compensar a largura da sidebar */
+      padding: 0; /* O padding será nas seções */
+    }
+
+    section {
+      padding: 80px 20px;
+      min-height: 100vh;
+    }
+
+    /* Seção Início */
+    #inicio h2 span {
+      color: var(--primary-color);
+    }
+    #inicio .social-icons a {
+        color: var(--primary-color); /* Cor dos ícones sociais */
+        font-size: 2.5em;
+        margin: 0 10px;
+        transition: transform 0.3s ease;
+    }
+    #inicio .social-icons a:hover {
+        transform: scale(1.1);
+    }
+
+
+    /* Seção Sobre */
+    #sobre {
+        overflow: hidden; /* Importante para conter o float da imagem de perfil */
+        /* Outros estilos para a seção sobre */
+    }
+    .inicio-imagem .img-perfil {
+      width: 300px;
+      height: 300px;
+      border-radius: 25px 0px 25px 0px;
+      border: 2px solid var(--primary-color);
+      object-fit: cover;
+      box-shadow: 0 25px 0px 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+      float: right; /* Mantido o float, mas veja a correção na seção #sobre */
+      margin-left: 30px; /* Espaçamento entre a imagem e o texto */
+      margin-bottom: 20px; /* Espaçamento abaixo da imagem */
+    }
+
+    .inicio-imagem .img-perfil:hover {
+      transform: scale(1.05);
+    }
+
+    /* Seção Especialidades */
+    #especialidades {
+      text-align: center;
+      padding: 80px 20px; /* Garantir padding consistente com outras seções */
+    }
+
+    /* Contêiner individual para cada habilidade e seu tooltip */
+    .habilidade-item {
+      position: relative;
+      display: inline-block;
+      margin: 15px; /* Ajustado um pouco para melhor espaçamento */
+      cursor: pointer;
+      -webkit-user-drag: none; /* Desativa arrastar em WebKit */
+      user-select: none;       /* Desativa seleção de texto */
+    }
+
+    .habilidade-item i {
+      font-size: 3em;
+      color: var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+
+    .habilidade-item i:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Estilos para a caixa de informações (tooltip) */
+    .tooltip-info {
+      visibility: hidden;
+      opacity: 0;
+      width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 120%; /* Posição: acima do ícone */
+      left: 50%;
+      margin-left: -100px; /* Metade da largura para centralizar */
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    /* Seta do tooltip */
+    .tooltip-info::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }
+
+    /* Mostrar o tooltip no hover */
+    .habilidade-item:hover .tooltip-info {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Seção Portfólio */
+    #portfolio {
+        /* Seção Portfólio, use padding consistente */
+        padding: 80px 20px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center; /* Centraliza o texto dentro dos itens do grid */
+    }
+
+    .grid-item {
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+      color: #fff;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .grid-item i {
+      font-size: 40px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* Seção Contato */
+    #contato {
+      background: var(--secondary-color);
+      text-align: center;
+      padding: 80px 20px 50px; /* Padding top consistente, e bottom para o formulário */
+    }
+
+    #contato a {
+      display: inline-block;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    #contato a:hover {
+      background: #00a678;
+    }
+
+    #contato p {
+      margin-top: 20px;
+    }
+
+    /* Formulário de Contato */
+    #formulario-contato {
+      background: #181818;
+      padding: 60px 20px;
+      text-align: center;
+      border-top: 2px solid var(--primary-color);
+    }
+
+    #formulario-contato h2 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .form-contato {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-contato label {
+      text-align: left;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .form-contato input,
+    .form-contato textarea {
+      padding: 12px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #222;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    .form-contato input:focus,
+    .form-contato textarea:focus {
+      border-color: var(--primary-color);
+    }
+
+    .form-contato button {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .form-contato button:hover {
+      background: #00a678;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 70px;
+      }
+      .sidebar h1 {
+        display: none;
+      }
+      .sidebar nav ul li a {
+          padding: 8px 5px; /* Ajuste o padding para links menores */
+          font-size: 0.8em; /* Fonte menor */
+      }
+      main {
+        margin-left: 70px;
+      }
+      .grid-container {
+        grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+      }
+      /* Ajuste o padding das seções para telas menores, se necessário */
+      section {
+          padding: 60px 15px;
+      }
+      .inicio-imagem .img-perfil {
+          float: none; /* Remove o float em telas pequenas */
+          display: block; /* Faz a imagem ocupar a largura total disponível */
+          margin: 0 auto 20px auto; /* Centraliza a imagem e adiciona margem inferior */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="estrelas-fundo"></div>
+
+  <aside class="sidebar">
+    <img src="img/logo.png" alt="Logo do Portfólio" class="img-logo">
+    <nav>
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#portfolio">Meus Projetos</a></li>
+        <li><a href="#contato">Fale Comigo</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="inicio">
+      <h2>Gabriel <span>Kalliu</span></h2>
+      <p>Frontend Web Developer</p>
+      <div class="social-icons"> <a href="https://www.linkedin.com/in/gabrielkalliu" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/k4ll1w" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <h2>Sobre mim</h2>
+        <div class="inicio-imagem">
+          <img src="img/dante.jpg" alt="Foto do Gabriel Kalliu" class="img-perfil" />
+        </div>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </section>
+
+    <section id="especialidades">
+      <h2>Especialidades</h2>
+      <p>Minhas principais habilidades:</p>
+
+      <div class="habilidade-item">
+        <i class="fa-brands fa-html5"></i>
+        <span class="tooltip-info">HTML5: Linguagem de Marcação de Hipertexto</span>
+      </div>
+
+      <div class="habilidade-item">
+        <i class="fa-brands fa-css3-alt"></i>
+        <span class="tooltip-info">CSS3: Linguagem de Estilo em Cascata</span>
+      </div>
+
+      <div class="habilidade-item">
+        <i class="fa-brands fa-wordpress"></i>
+        <span class="tooltip-info">WordPress: Sistema de Gerenciamento de Conteúdo</span>
+      </div>
+
+      <div class="habilidade-item">
+        <i class="fa-brands fa-react"></i>
+        <span class="tooltip-info">React: Biblioteca JavaScript para Interfaces de Usuário</span>
+      </div>
+
+      <div class="habilidade-item">
+        <i class="fa-brands fa-js"></i>
+        <span class="tooltip-info">JavaScript: Linguagem de Programação para Web</span>
+      </div>
+    </section> <section id="portfolio">
+      <h2>Meus Projetos</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <i class="fa-solid fa-laptop-code"></i>
+          <h3>Delta Music</h3>
+          <p>Cópia do famoso site de músicas Spotify</p>
+        </div>
+        <div class="grid-item">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <h3>Market Zap</h3>
+          <p>Extensão Google para disparo de mensagens pelo WhatsApp</p>
+        </div>
+        <div class="grid-item">
+          <i class="fa-solid fa-database"></i>
+          <h3>Studio JL</h3>
+          <p>Site de Salão de Beleza feminino</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <h2>Fale Comigo</h2> <form action="#" method="post" class="form-contato">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+
+        <button type="submit">Enviar Mensagem</button>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>
