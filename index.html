@@ -32,19 +32,20 @@
       scroll-behavior: smooth;
       background: var(--background-dark);
       color: var(--text-color);
+      /* Para que o fundo fixo funcione corretamente e não haja barras de rolagem indesejadas */
       overflow-x: hidden;
       position: relative; /* Necessário para posicionar o fundo fixo em relação ao body */
     }
 
     /* Fundo de estrelas animado */
     .estrelas-fundo {
-      position: fixed;
+      position: fixed; /* Fixa o fundo na viewport */
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -1; /* Coloca o fundo atrás de todo o conteúdo */
-      background-image: url('fundo.jpg');
+      background-image: url('img/fundo.jpg'); /* Verifique se o caminho está correto */
       background-repeat: repeat; /* Repete a imagem para criar um efeito contínuo */
       background-size: auto 200%; /* Altura maior para simular movimento vertical */
       animation: moverEstrelas 60s linear infinite; /* 60s de duração, linear, infinito */
@@ -64,7 +65,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 220px;
+      width: 10%;
       height: 100%;
       background: #1b1b1b;
       color: #fff;
@@ -72,14 +73,13 @@
       flex-direction: column;
       align-items: center;
       padding: 20px 10px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+      box-shadow: 3px 0 10px rgba(0, 0, 0, 0.4);
       z-index: 100; /* Garante que a sidebar fique acima de outros elementos */
     }
 
     .sidebar .img-logo { /* Seletor corrigido para a imagem da logo */
       width: 120px;
       height: 120px;
-      border-radius: 50%;
       object-fit: cover;
       margin-bottom: 20px; /* Adiciona um espaço abaixo da logo */
     }
@@ -117,7 +117,7 @@
 
     /* Conteúdo principal */
     main {
-      margin-left: 220px; /* Margem para compensar a largura da sidebar */
+      margin-left: 10%; /* Margem para compensar a largura da sidebar */
       padding: 0; /* O padding será nas seções */
     }
 
@@ -239,24 +239,32 @@
 
     .grid-item {
       background: #222;
-      padding: 20px;
-      border-radius: 12px;
+      padding: 30px;
+      border-radius: 25px 25px 0px 25px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       transition: transform 0.3s ease;
       color: #fff;
     }
+	.project-img img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+	.grid-item button{
+	 margin-top:15px;
+	 Padding:10px 15px;
+	 border-radius: 25px;
+	 cursor:pointer;
+	 background-color:var(--secondary-color);
+	 color:#fff;
+	 font-size:1rem;
+	}
 
     .grid-item:hover {
       transform: translateY(-5px);
     }
-
-    .grid-item i {
-      font-size: 40px;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-      display: block;
-    }
-
+	
     /* Seção Contato */
     #contato {
       background: var(--secondary-color);
@@ -345,7 +353,7 @@
     /* Responsividade */
     @media (max-width: 768px) {
       .sidebar {
-        width: 70px;
+        width: 30%;
       }
       .sidebar h1 {
         display: none;
@@ -355,7 +363,7 @@
           font-size: 0.8em; /* Fonte menor */
       }
       main {
-        margin-left: 70px;
+        margin-left: 30%;
       }
       .grid-container {
         grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
@@ -377,7 +385,7 @@
   <div class="estrelas-fundo"></div>
 
   <aside class="sidebar">
-    <img src="logo.png" alt="Logo do Portfólio" class="img-logo">
+    <img src="img/logo.png" alt="Logo do Portfólio" class="img-logo">
     <nav>
       <ul>
         <li><a href="#inicio">Início</a></li>
@@ -405,7 +413,7 @@
     <section id="sobre">
       <h2>Sobre mim</h2>
         <div class="inicio-imagem">
-          <img src="dante.jpg" alt="Foto do Gabriel Kalliu" class="img-perfil" />
+          <img src="img/dante.jpg" alt="Foto do Gabriel Kalliu" class="img-perfil" />
         </div>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
     </section>
@@ -438,23 +446,33 @@
         <i class="fa-brands fa-js"></i>
         <span class="tooltip-info">JavaScript: Linguagem de Programação para Web</span>
       </div>
-    </section> <section id="portfolio">
+    </section> 
+	<section id="portfolio">
       <h2>Meus Projetos</h2>
       <div class="grid-container">
         <div class="grid-item">
-          <i class="fa-solid fa-laptop-code"></i>
+          <div class="project-img">
+			<img src="img/dante.jpg"alt="Projeto Delta Music">
+		  </div>
           <h3>Delta Music</h3>
           <p>Cópia do famoso site de músicas Spotify</p>
+		  <button>Ver Projeto</button>
         </div>
         <div class="grid-item">
-          <i class="fa-solid fa-mobile-screen-button"></i>
+           <div class="project-img">
+			<img src="img/dante.jpg"alt="Market Zap">
+		  </div>
           <h3>Market Zap</h3>
           <p>Extensão Google para disparo de mensagens pelo WhatsApp</p>
+		  <button>Ver Projeto</button>
         </div>
         <div class="grid-item">
-          <i class="fa-solid fa-database"></i>
+           <div class="project-img">
+			<img src="img/dante.jpg"alt="Studiojl">
+		  </div>
           <h3>Studio JL</h3>
           <p>Site de Salão de Beleza feminino</p>
+		  <button>Ver Projeto</button>
         </div>
       </div>
     </section>
@@ -473,6 +491,10 @@
         <button type="submit">Enviar Mensagem</button>
       </form>
     </section>
+	
+  <footer>
+    &copy; 2025 Gabriel Kalliu - Todos os direitos reservados
+  </footer>
   </main>
 
 </body>
