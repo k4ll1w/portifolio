@@ -45,7 +45,7 @@
       width: 100%;
       height: 100%;
       z-index: -1; /* Coloca o fundo atrás de todo o conteúdo */
-      background-image: url('fundo.jpg'); /* Verifique se o caminho está correto */
+      background-image: url('img/fundo.jpg'); /* Verifique se o caminho está correto */
       background-repeat: repeat; /* Repete a imagem para criar um efeito contínuo */
       background-size: auto 200%; /* Altura maior para simular movimento vertical */
       animation: moverEstrelas 60s linear infinite; /* 60s de duração, linear, infinito */
@@ -131,7 +131,7 @@
       color: var(--primary-color);
     }
     #inicio .social-icons a {
-        color: var(--primary-color); /* Cor dos ícones sociais */
+        color: var(--primary-color); 
         font-size: 2.5em;
         margin: 0 10px;
         transition: transform 0.3s ease;
@@ -154,7 +154,7 @@
       object-fit: cover;
       box-shadow: 0 25px 0px 25px rgba(0, 0, 0, 0.5);
       transition: transform 0.3s ease;
-      float: right; /* Mantido o float, mas veja a correção na seção #sobre */
+      float: right; 
       margin-left: 30px; /* Espaçamento entre a imagem e o texto */
       margin-bottom: 20px; /* Espaçamento abaixo da imagem */
     }
@@ -173,7 +173,7 @@
     .habilidade-item {
       position: relative;
       display: inline-block;
-      margin: 15px; /* Ajustado um pouco para melhor espaçamento */
+      margin: 15px; 
       cursor: pointer;
       -webkit-user-drag: none; /* Desativa arrastar em WebKit */
       user-select: none;       /* Desativa seleção de texto */
@@ -219,11 +219,7 @@
       border-color: #333 transparent transparent transparent;
     }
 
-    /* Mostrar o tooltip no hover */
-    .habilidade-item:hover .tooltip-info {
-      visibility: visible;
-      opacity: 1;
-    }
+
 
     /* Seção Portfólio */
     #portfolio {
@@ -385,7 +381,7 @@
   <div class="estrelas-fundo"></div>
 
   <aside class="sidebar">
-    <img src="logo.png" alt="Logo do Portfólio" class="img-logo">
+    <img src="img/logo.png" alt="Logo do Portfólio" class="img-logo">
     <nav>
       <ul>
         <li><a href="#inicio">Início</a></li>
@@ -413,9 +409,9 @@
     <section id="sobre">
       <h2>Sobre mim</h2>
         <div class="inicio-imagem">
-          <img src="dante.jpg" alt="Foto do Gabriel Kalliu" class="img-perfil" />
+          <img src="img/dante.jpg" alt="Foto do Gabriel Kalliu" class="img-perfil" />
         </div>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+      <p>Meu nome é Gabriel Kalliu, tenho 28 anos e sou formado em Análise e Desenvolvimento de Sistemas (2023). Ao longo da minha trajetória, venho desenvolvendo projetos voltados para a criação de sites e soluções digitais, sempre buscando unir funcionalidade, design e inovação.</p>
     </section>
 
     <section id="especialidades">
@@ -446,6 +442,20 @@
         <i class="fa-brands fa-js"></i>
         <span class="tooltip-info">JavaScript: Linguagem de Programação para Web</span>
       </div>
+      <div class="habilidade-item">
+        <i class="fa-solid fa-database"></i>
+        <span class="tooltip-info">JavaScript: Linguagem de Programação para Web</span>
+      </div>
+	  <div class="habilidade-item">
+        <i class="fa-brands fa-php"></i>
+        <span class="tooltip-info">JavaScript: Linguagem de Programação para Web</span>
+      </div>
+	   <div class="habilidade-item">
+        <i class="fa-brands fa-java"></i>
+        <span class="tooltip-info">JavaScript: Linguagem de Programação para Web</span>
+      </div>
+
+
     </section> 
 	<section id="portfolio">
       <h2>Meus Projetos</h2>
@@ -499,4 +509,3 @@
 
 </body>
 </html>
-
